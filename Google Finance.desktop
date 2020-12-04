@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Google Finance Convert TXT to CSV
+GenericName=Application
+#Comment=Tor Browser is +1 for privacy and −1 for mass surveillance
+Categories=Applications
+Exec=java -jar /opt/java-exec/app-google-finance.jar
+#X-TorBrowser-ExecShell=./Browser/start-tor-browser --detach
+Icon=/opt/java-exec/exec.png
+#StartupWMClass=Tor Browser
