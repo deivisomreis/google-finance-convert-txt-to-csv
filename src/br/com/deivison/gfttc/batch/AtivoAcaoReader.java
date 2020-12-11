@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import br.com.deivison.gfttc.model.AtivoAcao;
+import br.com.deivison.gfttc.model.enums.Cotador;
 import br.com.deivison.gfttc.repository.AtivoAcaoRepository;
 
 public class AtivoAcaoReader {
@@ -38,7 +39,10 @@ public class AtivoAcaoReader {
 					vlrDia  = buffRead.readLine();
 				if(contProp == 4){
 					variacaoDia  = buffRead.readLine();
-					repository.addAcao(new AtivoAcao(empresa, acao, vlrDia, variacaoDia));
+					String variacaoReplace = variacaoDia.contains("−") ?
+							"-" + variacaoDia.substring(variacaoDia.indexOf("(") + 1, variacaoDia.indexOf("%")) :
+								variacaoDia.substring(variacaoDia.indexOf("(") + 1, variacaoDia.indexOf("%"));
+					repository.addAcao(new AtivoAcao(empresa, acao, vlrDia, variacaoReplace, Cotador.STATUS_INVEST));
 				}
 				
 				contProp = contProp == 4 ? 1 : contProp + 1;

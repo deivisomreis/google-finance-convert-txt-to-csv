@@ -1,6 +1,9 @@
 package br.com.deivison.gfttc.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import br.com.deivison.gfttc.model.enums.Cotador;
 
 public class AtivoAcao implements Serializable{
  
@@ -10,19 +13,20 @@ public class AtivoAcao implements Serializable{
 	
 	
 
-	public AtivoAcao(String empresa, String acao, String vlrFechamentoDia, String variacaoDiaPercentual) {
+	public AtivoAcao(String empresa, String acao, String vlrFechamentoDia, String variacaoDiaPercentual, Cotador cotador) {
 		this.empresa = empresa;
 		this.acao = acao;
 		this.vlrFechamentoDia = vlrFechamentoDia;
 		this.variacaoDiaPercentual = variacaoDiaPercentual;
+		this.cotador = cotador;
 	}
-
-
 
 	private String empresa;
 	private String acao;
 	private String vlrFechamentoDia;
 	private String variacaoDiaPercentual;
+	private Cotador cotador;
+	private Date dataCotacao;
 	
 	public String getEmpresa() {
 		return empresa;
@@ -48,6 +52,9 @@ public class AtivoAcao implements Serializable{
 	public void setVariacaoDiaPercentual(String variacaoDiaPercentual) {
 		this.variacaoDiaPercentual = variacaoDiaPercentual;
 	}
+	public String getUrlCotador(){
+		return cotador.getUrlCotador() + this.acao;
+	}
 	
 	@Override
 	public String toString() {
@@ -55,6 +62,4 @@ public class AtivoAcao implements Serializable{
 				+ ", vlrFechamentoDia=" + vlrFechamentoDia
 				+ ", variacaoDiaPercentual=" + variacaoDiaPercentual + "]";
 	}
-	
-	
 }

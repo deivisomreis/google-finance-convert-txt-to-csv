@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import br.com.deivison.gfttc.batch.AtivoAcaoExcelWriter;
 import br.com.deivison.gfttc.batch.AtivoAcaoReader;
 import br.com.deivison.gfttc.batch.AtivoAcaoWriter;
 import br.com.deivison.gfttc.model.AtivoAcao;
@@ -28,18 +29,21 @@ public class App {
 		boolean readerFileStatus = AtivoAcaoReader.readerFile(inputFileName, null);
 		
 		if(readerFileStatus){
-			while(pathOutput.isEmpty()){
-				pathOutput = JOptionPane.showInputDialog(null, "Informe o diretório de saída:", "Google Finance", 1);
-			}
+//			while(pathOutput.isEmpty()){
+//				pathOutput = JOptionPane.showInputDialog(null, "Informe o diretório de saída:", "Google Finance", 1);
+//			}
 			
-			while(outPutFileName.isEmpty()){
-				outPutFileName = JOptionPane.showInputDialog(null, "Informe o nome do arquivo de saída:", "Google Finance", 1);
-			}
+//			while(outPutFileName.isEmpty()){
+//				outPutFileName = JOptionPane.showInputDialog(null, "Informe o nome do arquivo de saída:", "Google Finance", 1);
+//			}
 			
-			AtivoAcaoWriter.fileWriter(pathOutput + "/" + outPutFileName);
-			JOptionPane.showMessageDialog(null, "Processo finalizado com sucesso. Arquivo gerado: " + pathOutput + "/" + outPutFileName, "Google Finance", 3);
+//			AtivoAcaoWriter.fileWriter(pathOutput + "/" + outPutFileName);
+//			JOptionPane.showMessageDialog(null, "Processo finalizado com sucesso. Arquivo gerado: " + pathOutput + "/" + outPutFileName, "Google Finance", 3);
 			
-			Runtime.getRuntime().exec("libreoffice " + pathOutput + "/" + outPutFileName);
+			String resultUrlFile = AtivoAcaoExcelWriter.createWorkbook();
+			JOptionPane.showMessageDialog(null, "Processo finalizado com sucesso. Arquivo gerado: " + resultUrlFile, "Google Finance", 3);
+			
+			Runtime.getRuntime().exec("libreoffice " + resultUrlFile);
 			System.exit(0);
 		}
 	}

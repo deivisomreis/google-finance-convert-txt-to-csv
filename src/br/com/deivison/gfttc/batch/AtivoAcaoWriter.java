@@ -23,9 +23,13 @@ public class AtivoAcaoWriter {
 		if(listAtivos.size() > 0){
 			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(new File(fileName)));
 			
-			buffWrite.write("Empresa, Ação, Valor, Variação\n");
+			buffWrite.write("Empresa, Ação, Valor, Variação,Cotação\n");
 			for(AtivoAcao atv : listAtivos){
-				buffWrite.write(atv.getEmpresa() +"," + atv.getAcao() + ",\"" + atv.getVlrFechamentoDia().replace(" BRL", "") + "\",\"" + atv.getVariacaoDiaPercentual() + "\"\n");
+				buffWrite.write(atv.getEmpresa() +"," 
+						+ atv.getAcao() + ",\""
+						+ atv.getVlrFechamentoDia().replace(" BRL", "") + "\",\"" 
+						+ atv.getVariacaoDiaPercentual() + "\"," 
+						+ atv.getUrlCotador() + "\n");
 				buffWrite.flush();
 			}
 			buffWrite.close();
